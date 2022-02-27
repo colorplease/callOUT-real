@@ -57,6 +57,11 @@ public class InputManager : MonoBehaviour
         return playerMovement.Player.Interact.triggered;
     }
 
+    public bool PlayerUsedFlashlightThisFrame()
+    {
+        return playerMovement.Player.Flashlight.triggered;
+    }
+
     public bool PlayerJumpedThisFrame()
     {
         return playerMovement.Player.Jump.triggered;

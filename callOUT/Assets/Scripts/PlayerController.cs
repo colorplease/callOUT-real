@@ -41,10 +41,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField]Vector3 crouchScale;
     [SerializeField]float crouchSpeed;
 
+    [Header("Items")]
+    [SerializeField]int flashLightToggle = 0;
+    [SerializeField]GameObject flashlight; 
+
     Vector3 moveDirection;
     Vector3 slopeMoveDirection;
 
-    Rigidbody rb;
+    public Rigidbody rb;
 
     RaycastHit slopeHit;
 
@@ -80,6 +84,7 @@ public class PlayerController : MonoBehaviour
         ControlSpeed();
         Crouch();
         Jump();
+        Flashlight();
         slopeMoveDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
     }
 
@@ -144,6 +149,7 @@ public class PlayerController : MonoBehaviour
         {
             transform.localScale = Vector3.Lerp(transform.localScale, crouchScale, crouchSpeed * Time.deltaTime);
             movementMultiplier = 6f;
+            rb.AddForce(Vector3.down * gravity * rb.mass);
 
         }
         else
@@ -161,5 +167,24 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
         }
 
+    }
+
+    void Flashlight()
+    {
+        if(inputManager.PlayerUsedFlashlightThisFrame())
+        {
+            switch(flashLightToggle)
+            {
+                case 0:
+                flashlight.SetActive(false);
+                flashLightToggle = 1;
+                break;
+
+                case 1:
+                flashlight.SetActive(true);
+                flashLightToggle = 0;
+                break;
+            }
+        }
     }
 }
