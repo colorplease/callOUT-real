@@ -12,7 +12,7 @@ public class HeadbobController : MonoBehaviour
     [SerializeField] Transform camera = null;
     [SerializeField] Transform cameraHolder = null;
 
-    float toggleSpeed = 0.1f;
+    float toggleSpeed = 2.5f;
     Vector3 startPos;
     PlayerController controller;
     // Start is called before the first frame update
@@ -20,16 +20,24 @@ public class HeadbobController : MonoBehaviour
     {
         controller = GetComponentInParent<PlayerController>();
         startPos = camera.localPosition;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         if (!_enable) return;
-         ResetPosition();
         CheckMotion();
         camera.LookAt(FocusTarget());
-        print(controller.rb.velocity);
+        if (controller.inputManager.PlayerSprinting())
+        {
+        frequency = 15;
+        }
+        else
+        {
+            frequency = 10;
+        }
+        
     }
 
     Vector3 FootStepMotion()
@@ -51,19 +59,24 @@ public class HeadbobController : MonoBehaviour
     {
         float speed = new Vector3(controller.rb.velocity.x, 0, controller.rb.velocity.z).magnitude;
         if(speed < toggleSpeed) return;
+        ResetPosition();
         if(!controller.isGrounded) return;
         PlayMotion(FootStepMotion());
+        
     }
 
     void ResetPosition()
     {
-        if (camera.localPosition == startPos) return;
-        camera.localPosition = Vector3.Slerp(camera.localPosition, startPos, 1 * Time.deltaTime);
+        if (camera.localPosition == startPos)
+        {
+        camera.localPosition = Vector3.Lerp(camera.localPosition, startPos, 0.1f * Time.deltaTime);
+        }
     }
 
-    void PlayMotion(Vector3 motion){
-camera.localPosition += motion; 
-}
+    void PlayMotion(Vector3 motion)
+    {
+        camera.localPosition += motion;
+    }
 
 
 }

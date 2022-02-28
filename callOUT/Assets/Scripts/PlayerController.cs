@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float moveSpeed = 6f;
     [SerializeField] float airMultiplier = 0.4f;
     float movementMultiplier = 10f;
-    [SerializeField]InputManager inputManager;
+    public InputManager inputManager;
     [SerializeField]float gravity;
 
     [Header("Sprinting")]

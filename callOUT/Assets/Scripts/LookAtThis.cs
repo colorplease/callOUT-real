@@ -38,7 +38,7 @@ public class LookAtThis : MonoBehaviour
         yRotation += mouseX * sensX * multiplier;
         xRotation -= mouseY * sensY * multiplier;
 
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        xRotation = Mathf.Clamp(xRotation, -80f, 80f);
 
         cam.transform.rotation = Quaternion.Euler(xRotation, yRotation, cam.transform.rotation.z);
         orientation.transform.rotation = Quaternion.Euler(0, yRotation, 0);
