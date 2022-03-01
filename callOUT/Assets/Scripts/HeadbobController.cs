@@ -12,7 +12,7 @@ public class HeadbobController : MonoBehaviour
     [SerializeField] Transform camera = null;
     [SerializeField] Transform cameraHolder = null;
 
-    float toggleSpeed = 2.5f;
+    float toggleSpeed = 2.75f;
     Vector3 startPos;
     PlayerController controller;
     // Start is called before the first frame update
