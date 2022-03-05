@@ -755,10 +755,11 @@ MonoBehaviour:
   networkAddress: localhost
   maxConnections: 2
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 5342446302763321173, guid: 9abe21143abbf174cbcd1f23012cb6f6, type: 3}
+  playerPrefab: {fileID: 8322838325861712176, guid: 2ca0c1e893645bd4cb3c31372ffc4755, type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
-  spawnPrefabs: []
+  spawnPrefabs:
+  - {fileID: 5342446302763321173, guid: 9abe21143abbf174cbcd1f23012cb6f6, type: 3}
   GamePlayerPrefab: {fileID: 5342446302763321179, guid: 9abe21143abbf174cbcd1f23012cb6f6, type: 3}
 --- !u!4 &1841321950
 Transform:
