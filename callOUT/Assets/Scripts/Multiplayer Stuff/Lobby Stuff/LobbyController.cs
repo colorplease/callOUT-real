@@ -91,7 +91,7 @@ public class LobbyController : MonoBehaviour
             }
             else
             {
-                StartGameButton.interactable = false;
+                startGameButton.SetActive(false);
             }
         }
         else
@@ -116,7 +116,6 @@ public class LobbyController : MonoBehaviour
 
     public void CreateHostPlayerItem()
     {
-        startGameButton.SetActive(true);
         foreach(PlayerObjectController player in Manager.GamePlayers)
         {
             GameObject NewPlayerItem = Instantiate(PlayerListItemPrefab) as GameObject;
