@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class HeadbobController : MonoBehaviour
+public class HeadbobController : NetworkBehaviour
 {
     [SerializeField]bool _enable = true;
 
@@ -26,16 +27,19 @@ public class HeadbobController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!_enable) return;
-        CheckMotion();
-        camera.LookAt(FocusTarget());
-        if (controller.inputManager.PlayerSprinting())
+        if (hasAuthority)
         {
-        frequency = 15;
-        }
-        else
-        {
+            if (!_enable) return;
+            CheckMotion();
+            camera.LookAt(FocusTarget());
+            if (controller.inputManager.PlayerSprinting())
+            {
+            frequency = 15;
+            }
+            else
+            {
             frequency = 10;
+            }
         }
         
     }

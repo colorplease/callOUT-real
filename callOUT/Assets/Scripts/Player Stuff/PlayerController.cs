@@ -1,10 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class PlayerController : MonoBehaviour
+using UnityEngine.SceneManagement;
+using Mirror;
+public class PlayerController : NetworkBehaviour
 {
     float playerHeight = 2f;
+
+    [Header("Network")]
+    public GameObject PlayerModel;
+
 
     [SerializeField] Transform orientation;
 
@@ -70,22 +75,39 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        PlayerModel.SetActive(false);
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         inputManager = InputManager.Instance; 
     }
 
+    public void SetPosition()
+    {
+        Transform spawnPoint = GameObject.Find("Player 1 Spawn").transform;
+        transform.position = spawnPoint.position;
+    }
+
     private void Update()
     {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-
-        MyInput();
-        ControlDrag();
-        ControlSpeed();
-        Crouch();
-        Jump();
-        Flashlight();
-        slopeMoveDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
+        if (SceneManager.GetActiveScene().name == "TESTING")
+        {
+            if (PlayerModel.activeSelf == false)
+            {
+                SetPosition();
+                PlayerModel.SetActive(true);
+            }
+                if (hasAuthority)
+                {
+                    isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+                    MyInput();
+                    ControlDrag();
+                    ControlSpeed();
+                    Crouch();
+                    Jump();
+                    Flashlight();
+                    slopeMoveDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
+                }
+        }
     }
 
     void MyInput()
@@ -124,7 +146,10 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (hasAuthority)
+        {
         MovePlayer();
+        }
     }
 
     void MovePlayer()
