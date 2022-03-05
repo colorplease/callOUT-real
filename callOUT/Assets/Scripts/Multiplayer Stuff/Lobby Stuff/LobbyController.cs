@@ -41,6 +41,7 @@ public class LobbyController : MonoBehaviour
 
     //Ready
     public Button StartGameButton;
+    public GameObject startGameButton;
     public TextMeshProUGUI ReadyButtonText;
 
     void Awake()
@@ -139,6 +140,7 @@ public class LobbyController : MonoBehaviour
         {
             if(!PlayerListItems.Any(b => b.ConnectionID == player.ConnectionID))
             {
+            startGameButton.SetActive(false);
             GameObject NewPlayerItem = Instantiate(PlayerListItemPrefab) as GameObject;
             PlayerListItem NewPlayerItemScript = NewPlayerItem.GetComponent<PlayerListItem>();
 
