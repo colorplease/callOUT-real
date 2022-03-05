@@ -93,6 +93,7 @@ public class PlayerController : NetworkBehaviour
         {
             if (PlayerModel.activeSelf == false)
             {
+                Application.targetFrameRate = 60;
                 SetPosition();
                 rb.useGravity = true;
                 PlayerModel.SetActive(true);
