@@ -116,9 +116,9 @@ public class LobbyController : MonoBehaviour
 
     public void CreateHostPlayerItem()
     {
+        startGameButton.SetActive(true);
         foreach(PlayerObjectController player in Manager.GamePlayers)
         {
-            startGameButton.SetActive(true);
             GameObject NewPlayerItem = Instantiate(PlayerListItemPrefab) as GameObject;
             PlayerListItem NewPlayerItemScript = NewPlayerItem.GetComponent<PlayerListItem>();
 
