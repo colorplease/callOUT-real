@@ -118,6 +118,7 @@ public class LobbyController : MonoBehaviour
     {
         foreach(PlayerObjectController player in Manager.GamePlayers)
         {
+            startGameButton.SetActive(true);
             GameObject NewPlayerItem = Instantiate(PlayerListItemPrefab) as GameObject;
             PlayerListItem NewPlayerItemScript = NewPlayerItem.GetComponent<PlayerListItem>();
 
@@ -140,7 +141,6 @@ public class LobbyController : MonoBehaviour
         {
             if(!PlayerListItems.Any(b => b.ConnectionID == player.ConnectionID))
             {
-            startGameButton.SetActive(false);
             GameObject NewPlayerItem = Instantiate(PlayerListItemPrefab) as GameObject;
             PlayerListItem NewPlayerItemScript = NewPlayerItem.GetComponent<PlayerListItem>();
 
