@@ -94,6 +94,7 @@ public class PlayerController : NetworkBehaviour
             if (PlayerModel.activeSelf == false)
             {
                 SetPosition();
+                rb.useGravity = true;
                 PlayerModel.SetActive(true);
             }
                 if (hasAuthority)
