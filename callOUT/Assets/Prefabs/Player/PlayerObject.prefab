@@ -127,7 +127,6 @@ GameObject:
   - component: {fileID: 5342446301292845998}
   - component: {fileID: 5342446301292845997}
   - component: {fileID: 5342446301292845996}
-  - component: {fileID: 5342446301292845999}
   m_Layer: 0
   m_Name: PlayerModel
   m_TagString: Untagged
@@ -146,8 +145,8 @@ Transform:
   m_LocalPosition: {x: 0, y: -0.42299986, z: -0.16200018}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 5342446302175130487}
   - {fileID: 5342446303265117698}
+  - {fileID: 5342446302175130487}
   m_Father: {fileID: 4764514659923307077}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -200,20 +199,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &5342446301292845999
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5342446301292845985}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5342446302061607697
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,7 +383,7 @@ Transform:
   m_Children:
   - {fileID: 5342446303302721532}
   m_Father: {fileID: 5342446301292845998}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5342446302175130484
 MonoBehaviour:
@@ -434,6 +419,7 @@ GameObject:
   - component: {fileID: 5342446302763321178}
   - component: {fileID: 5342446302763321177}
   - component: {fileID: 4241336411186808302}
+  - component: {fileID: 3034462746316776606}
   m_Layer: 0
   m_Name: PlayerObject
   m_TagString: Untagged
@@ -632,6 +618,20 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &3034462746316776606
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5342446302763321173}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5342446303262963916
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,7 +737,7 @@ Transform:
   - {fileID: 5342446302128432832}
   - {fileID: 5342446302061607710}
   m_Father: {fileID: 5342446301292845998}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5342446303302721535
 GameObject:
