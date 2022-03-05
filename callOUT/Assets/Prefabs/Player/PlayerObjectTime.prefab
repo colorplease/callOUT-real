@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 8210090740342455403}
   - component: {fileID: 9116683259456606416}
   - component: {fileID: -1909448078407890636}
+  - component: {fileID: 3992980888855125888}
+  - component: {fileID: -866544715612137850}
   m_Layer: 0
   m_Name: PlayerObjectTime
   m_TagString: Untagged
@@ -68,3 +70,54 @@ MonoBehaviour:
   PlayerSteamID: 0
   PlayerName: 
   Ready: 0
+--- !u!136 &3992980888855125888
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2367852559480536614}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-866544715612137850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2367852559480536614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e188cb8baaf445643adfde27690650f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  PlayerModel: {fileID: 5342446301292845985, guid: 9abe21143abbf174cbcd1f23012cb6f6, type: 3}
+  orientation: {fileID: 5342446303265117698, guid: 9abe21143abbf174cbcd1f23012cb6f6, type: 3}
+  moveSpeed: 6
+  airMultiplier: 0.4
+  inputManager: {fileID: 0}
+  gravity: 2
+  walkSpeed: 4
+  sprintSpeed: 6
+  acceleration: 10
+  jumpForce: 10
+  groundDrag: 6
+  airDrag: 2
+  groundCheck: {fileID: 5342446302061607710, guid: 9abe21143abbf174cbcd1f23012cb6f6, type: 3}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 8
+  groundDistance: 0.2
+  startingScale: {x: 1, y: 1, z: 1}
+  crouchScale: {x: 1, y: 0.65, z: 1}
+  crouchSpeed: 10
+  flashLightToggle: 0
+  flashlight: {fileID: 5342446302134611097, guid: 9abe21143abbf174cbcd1f23012cb6f6, type: 3}
+  rb: {fileID: 0}

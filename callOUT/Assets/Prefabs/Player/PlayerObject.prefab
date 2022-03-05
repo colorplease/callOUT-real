@@ -413,7 +413,6 @@ GameObject:
   - component: {fileID: 5342446302763321182}
   - component: {fileID: 5342446302763321180}
   - component: {fileID: 5342446302763321183}
-  - component: {fileID: 5342446302763321181}
   - component: {fileID: 5342446302763321176}
   - component: {fileID: 5342446302763321179}
   - component: {fileID: 5342446302763321178}
@@ -491,25 +490,6 @@ MonoBehaviour:
   flashLightToggle: 0
   flashlight: {fileID: 5342446302134611097}
   rb: {fileID: 0}
---- !u!114 &5342446302763321181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5342446302763321173}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f34f32ed24999864dba41d483da916ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  _enable: 1
-  amplitude: 0.15
-  frequency: 10
-  camera: {fileID: 5342446303302721532}
-  cameraHolder: {fileID: 5342446302175130487}
 --- !u!114 &5342446302763321176
 MonoBehaviour:
   m_ObjectHideFlags: 0
