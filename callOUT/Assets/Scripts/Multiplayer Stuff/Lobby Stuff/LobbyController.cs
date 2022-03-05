@@ -41,7 +41,6 @@ public class LobbyController : MonoBehaviour
 
     //Ready
     public Button StartGameButton;
-    public GameObject startGameButton;
     public TextMeshProUGUI ReadyButtonText;
 
     void Awake()
@@ -91,13 +90,15 @@ public class LobbyController : MonoBehaviour
             }
             else
             {
-                startGameButton.SetActive(false);
+                StartGameButton.interactable = false;
             }
         }
         else
         {
             StartGameButton.interactable = false;
         }
+
+    
     }
 
     public void FindLocalPlayer()
