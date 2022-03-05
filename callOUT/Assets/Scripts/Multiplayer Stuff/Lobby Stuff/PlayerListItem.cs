@@ -13,9 +13,25 @@ public class PlayerListItem : MonoBehaviour
     private bool AvatarReceived;
 
     public TextMeshProUGUI PlayerNameText;
+    public TextMeshProUGUI PlayerReadyText;
     public RawImage PlayerIcon;
+    public bool Ready;
 
     protected Callback<AvatarImageLoaded_t> ImageLoaded;
+
+    public void ChangeReadyStatus()
+    {
+        if(Ready) // ready
+        {
+            PlayerReadyText.SetText("Ready");
+            PlayerReadyText.color = Color.green;
+        }
+        else //not ready
+        {
+            PlayerReadyText.SetText("Not Ready");
+            PlayerReadyText.color = Color.red;
+        }
+    }
 
     private void Start()
     {
@@ -32,6 +48,7 @@ public class PlayerListItem : MonoBehaviour
     public void SetPlayerValues()
     {
         PlayerNameText.text = PlayerName;
+        ChangeReadyStatus();
         if(!AvatarReceived) {GetPlayerIcon();}
     }
 
