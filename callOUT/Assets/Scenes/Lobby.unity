@@ -885,6 +885,7 @@ MonoBehaviour:
   PlayerItemCreated: 0
   LocalplayerController: {fileID: 0}
   StartGameButton: {fileID: 1914897831}
+  startGameButton: {fileID: 1914897827}
   ReadyButtonText: {fileID: 2020754879}
 --- !u!4 &1282413240
 Transform:
