@@ -17,7 +17,9 @@ public class InputManager : NetworkBehaviour
 
     void Awake()
     {
-        playerMovement = new PlayerMovement();
+        if (hasAuthority)
+        {
+            playerMovement = new PlayerMovement();
         if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);
@@ -26,16 +28,24 @@ public class InputManager : NetworkBehaviour
         {
             _instance = this;
         }
+        }
+        
     }
 
     void OnEnable()
     {
-        playerMovement.Enable();
+        if (hasAuthority)
+        {
+            playerMovement.Enable();
+        }
     }
 
     void OnDisable()
     {
-        playerMovement.Disable();
+        if (hasAuthority)
+        {
+            playerMovement.Disable();
+        }
     }
 
     public Vector2 GetPlayerMovement()
