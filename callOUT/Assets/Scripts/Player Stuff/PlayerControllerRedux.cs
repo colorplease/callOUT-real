@@ -93,8 +93,7 @@ public class PlayerControllerRedux : NetworkBehaviour
         {
             if (PlayerModel.activeSelf == false)
             {
-                SetPosition();
-                PlayerModel.SetActive(true);
+                StartCoroutine(WaitForReady());
             }
         }
         if (hasAuthority)
@@ -108,6 +107,16 @@ public class PlayerControllerRedux : NetworkBehaviour
             slopeMoveDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
             
         }
+    }
+
+    IEnumerator WaitForReady()
+    {
+        while(!connectionToClient.isReady)
+        {
+            yield return new WaitForSeconds(0.25f);
+        }
+        SetPosition();
+        PlayerModel.SetActive(true);
     }
 
     void MyInput()
