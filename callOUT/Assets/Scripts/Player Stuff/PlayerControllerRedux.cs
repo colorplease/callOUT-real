@@ -106,6 +106,11 @@ public class PlayerControllerRedux : NetworkBehaviour
             Crouch();
             Jump();
             slopeMoveDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
+
+            if (transform.position.y <= -1)
+            {
+                SetPosition();
+            }
             
         }
     }
