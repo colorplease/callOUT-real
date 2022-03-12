@@ -91,10 +91,10 @@ public class PlayerControllerRedux : NetworkBehaviour
     {
         if(SceneManager.GetActiveScene().name == "TESTING")
         {
-            if (PlayerModel.activeSelf == false && connectionToClient.isReady)
+            if (PlayerModel.activeSelf == false)
             {
-                rb.useGravity = false;
-                StartCoroutine(WaitForReady());
+                SetPosition();
+                PlayerModel.SetActive(true);
             }
         }
         if (hasAuthority)
@@ -113,17 +113,6 @@ public class PlayerControllerRedux : NetworkBehaviour
             }
             
         }
-    }
-
-    IEnumerator WaitForReady()
-    {
-        while(!connectionToClient.isReady)
-        {
-            yield return new WaitForSeconds(0.25f);
-        }
-        rb.useGravity = true;
-        SetPosition();
-        PlayerModel.SetActive(true);
     }
 
     void MyInput()
