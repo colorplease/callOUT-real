@@ -108,6 +108,17 @@ public class PlayerObjectController : NetworkBehaviour
     [Command]
     public void CmdCanStartGame(string SceneName)
     {
-    manager.StartGame(SceneName);
+        StartCoroutine(WaitForReady(SceneName));
+        
+    }
+
+    IEnumerator WaitForReady(string SceneName)
+    {
+        while(!connectionToClient.isReady)
+        {
+            yield return new WaitForSeconds(0.25f);
+        }
+        manager.StartGame(SceneName);
+        
     }
 }
