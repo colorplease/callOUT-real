@@ -109,7 +109,6 @@ public class PlayerObjectController : NetworkBehaviour
     public void CmdCanStartGame(string SceneName)
     {
         StartCoroutine(WaitForReady(SceneName));
-        
     }
 
     IEnumerator WaitForReady(string SceneName)

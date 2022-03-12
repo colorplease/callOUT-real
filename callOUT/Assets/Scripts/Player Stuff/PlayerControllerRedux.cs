@@ -61,7 +61,7 @@ public class PlayerControllerRedux : NetworkBehaviour
     public void SetPosition()
     {
         //Transform spawnPoint = GameObject.Find("Player 1 Spawn").transform;
-        transform.position = new Vector3(Random.Range(0.1f, -5f), 0.16f, Random.Range(-3f, 5f));
+        transform.position = new Vector3(Random.Range(0.1f, -5f), 0.9f, Random.Range(-3f, 5f));
     }
 
     private bool OnSlope()
