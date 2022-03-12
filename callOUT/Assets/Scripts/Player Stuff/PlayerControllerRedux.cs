@@ -91,7 +91,7 @@ public class PlayerControllerRedux : NetworkBehaviour
     {
         if(SceneManager.GetActiveScene().name == "TESTING")
         {
-            if (PlayerModel.activeSelf == false)
+            if (PlayerModel.activeSelf == false && connectionToClient.isReady)
             {
                 rb.useGravity = false;
                 StartCoroutine(WaitForReady());
