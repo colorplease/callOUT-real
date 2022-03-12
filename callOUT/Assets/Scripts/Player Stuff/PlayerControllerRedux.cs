@@ -93,6 +93,7 @@ public class PlayerControllerRedux : NetworkBehaviour
         {
             if (PlayerModel.activeSelf == false)
             {
+                rb.useGravity = false;
                 StartCoroutine(WaitForReady());
             }
         }
@@ -115,6 +116,7 @@ public class PlayerControllerRedux : NetworkBehaviour
         {
             yield return new WaitForSeconds(0.25f);
         }
+        rb.useGravity = true;
         SetPosition();
         PlayerModel.SetActive(true);
     }
