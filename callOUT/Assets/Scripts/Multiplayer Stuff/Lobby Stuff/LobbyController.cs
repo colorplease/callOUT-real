@@ -149,6 +149,7 @@ public class LobbyController : MonoBehaviour
             NewPlayerItemScript.PlayerSteamID = player.PlayerSteamID;
             NewPlayerItemScript.Ready = player.Ready;
             NewPlayerItemScript.SetPlayerValues();
+            Destroy(NewPlayerItem.transform.Find("Camera"));
 
             NewPlayerItem.transform.SetParent(PlayerListViewContent.transform);
 
