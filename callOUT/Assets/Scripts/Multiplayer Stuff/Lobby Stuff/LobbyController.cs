@@ -119,7 +119,6 @@ public class LobbyController : MonoBehaviour
     {
         foreach(PlayerObjectController player in Manager.GamePlayers)
         {
-            print("hey!!");
             GameObject NewPlayerItem = Instantiate(PlayerListItemPrefab) as GameObject;
             PlayerListItem NewPlayerItemScript = NewPlayerItem.GetComponent<PlayerListItem>();
 
