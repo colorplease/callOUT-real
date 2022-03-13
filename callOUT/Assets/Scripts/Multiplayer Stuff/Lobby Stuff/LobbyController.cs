@@ -119,6 +119,7 @@ public class LobbyController : MonoBehaviour
     {
         foreach(PlayerObjectController player in Manager.GamePlayers)
         {
+            print("hey!!");
             GameObject NewPlayerItem = Instantiate(PlayerListItemPrefab) as GameObject;
             PlayerListItem NewPlayerItemScript = NewPlayerItem.GetComponent<PlayerListItem>();
 
@@ -149,7 +150,6 @@ public class LobbyController : MonoBehaviour
             NewPlayerItemScript.PlayerSteamID = player.PlayerSteamID;
             NewPlayerItemScript.Ready = player.Ready;
             NewPlayerItemScript.SetPlayerValues();
-            Destroy(NewPlayerItem.transform.Find("Camera"));
 
             NewPlayerItem.transform.SetParent(PlayerListViewContent.transform);
 

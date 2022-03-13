@@ -175,6 +175,7 @@ MonoBehaviour:
   crouchScale: {x: 1, y: 0.5, z: 1}
   crouchSpeed: 10
   PlayerModel: {fileID: 1045568802689704901}
+  cameraClient: {fileID: 4628369532435069535}
 --- !u!136 &743365630814980470
 CapsuleCollider:
   m_ObjectHideFlags: 0

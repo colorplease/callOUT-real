@@ -57,6 +57,7 @@ public class PlayerControllerRedux : NetworkBehaviour
     RaycastHit slopeHit;
     [Header("Network")]
     public GameObject PlayerModel;
+    public GameObject cameraClient;
     
     public void SetPosition()
     {
@@ -85,6 +86,11 @@ public class PlayerControllerRedux : NetworkBehaviour
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         PlayerModel.SetActive(false);
+
+        if (!isLocalPlayer)
+        {
+            Destroy(cameraClient);   
+        }
     }
 
     private void Update()
