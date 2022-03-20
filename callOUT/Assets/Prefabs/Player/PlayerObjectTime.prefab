@@ -164,6 +164,7 @@ MonoBehaviour:
   sprintKey: 304
   crouchKey: 99
   jumpKey: 32
+  flashLightKey: 102
   groundDrag: 6
   airDrag: 2
   groundCheck: {fileID: 8804707075727916704}
@@ -176,6 +177,7 @@ MonoBehaviour:
   crouchSpeed: 10
   PlayerModel: {fileID: 1045568802689704901}
   cameraClient: {fileID: 4628369532435069535}
+  flashLight: {fileID: 8682491010647541000}
 --- !u!136 &743365630814980470
 CapsuleCollider:
   m_ObjectHideFlags: 0

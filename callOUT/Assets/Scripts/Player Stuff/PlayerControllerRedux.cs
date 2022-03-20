@@ -30,6 +30,7 @@ public class PlayerControllerRedux : NetworkBehaviour
     [SerializeField] KeyCode sprintKey = KeyCode.LeftShift;
     [SerializeField] KeyCode crouchKey = KeyCode.C;
     [SerializeField] KeyCode jumpKey = KeyCode.Space;
+    [SerializeField] KeyCode flashLightKey = KeyCode.F;
 
     [Header("Drag")]
     [SerializeField] float groundDrag = 6f;
@@ -58,6 +59,10 @@ public class PlayerControllerRedux : NetworkBehaviour
     [Header("Network")]
     public GameObject PlayerModel;
     public GameObject cameraClient;
+
+    [Header("Items")]
+    public GameObject flashLight;
+    int flashLightState;
     
     public void SetPosition()
     {
@@ -111,6 +116,7 @@ public class PlayerControllerRedux : NetworkBehaviour
             ControlSpeed();
             Crouch();
             Jump();
+            FlashLight();
             slopeMoveDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
 
             if (transform.position.y <= -1)
@@ -142,6 +148,19 @@ public class PlayerControllerRedux : NetworkBehaviour
         {
             isCrouching = false;
         }
+        
+        if(Input.GetKeyDown(flashLightKey))
+        {
+            if (flashLightState == 0)
+            {
+                flashLightState = 1;
+            }
+            else
+            {
+                flashLightState = 0;
+            }
+        }
+
 
         moveDirection = orientation.forward * verticalMovement + orientation.right * horizontalMovement;
     }
@@ -216,6 +235,20 @@ public class PlayerControllerRedux : NetworkBehaviour
         {
             transform.localScale = Vector3.Lerp(transform.localScale, startingScale, crouchSpeed * Time.deltaTime);
             movementMultiplier = 10f;
+        }
+    }
+
+    void FlashLight()
+    {
+        switch(flashLightState)
+        {
+            case 0:
+            flashLight.SetActive(true);
+            break;
+
+            case 1:
+            flashLight.SetActive(false);
+            break;
         }
     }
 }
