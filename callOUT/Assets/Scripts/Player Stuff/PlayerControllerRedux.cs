@@ -123,7 +123,15 @@ public class PlayerControllerRedux : NetworkBehaviour
             {
                 SetPosition();
             }
-            
+
+            if(isServer)
+            {
+                RpcFlashLight();
+            }
+            else
+            {
+                CmdFlashLight();
+            }
         }
     }
 
@@ -238,6 +246,14 @@ public class PlayerControllerRedux : NetworkBehaviour
         }
     }
 
+    [ClientRpc]
+    void RpcFlashLight()
+    {
+        if(isLocalPlayer)
+        return;
+        FlashLight();
+    }
+
     void FlashLight()
     {
         switch(flashLightState)
@@ -251,4 +267,14 @@ public class PlayerControllerRedux : NetworkBehaviour
             break;
         }
     }
+
+    [Command]
+    void CmdFlashLight()
+    {
+        //Apply it to all other clients
+        FlashLight();
+        RpcFlashLight();
+    }
+
+    
 }
