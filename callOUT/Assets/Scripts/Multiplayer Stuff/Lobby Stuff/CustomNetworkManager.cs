@@ -29,14 +29,5 @@ public class CustomNetworkManager : NetworkManager
         ServerChangeScene(SceneName);
     }
 
-    void OnClientSceneChanged()
-    {
-        print("ooga");
-    }
-
-    void OnServerSceneChanged()
-    {
-        print("booga");
-    }
 
 }
