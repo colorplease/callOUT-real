@@ -116,7 +116,6 @@ public class PlayerControllerRedux : NetworkBehaviour
             ControlSpeed();
             Crouch();
             Jump();
-            FlashLight();
             slopeMoveDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
 
             if (transform.position.y <= -1)
@@ -124,15 +123,7 @@ public class PlayerControllerRedux : NetworkBehaviour
                 SetPosition();
             }
         }
-
-        if(isServer)
-            {
-                RpcFlashLight();
-            }
-            else
-            {
-                CmdFlashLight();
-            }
+        FlashLight();
     }
 
     void MyInput()
@@ -246,13 +237,6 @@ public class PlayerControllerRedux : NetworkBehaviour
         }
     }
 
-    [ClientRpc]
-    void RpcFlashLight()
-    {
-        if(isLocalPlayer)
-        return;
-        FlashLight();
-    }
 
     void FlashLight()
     {
@@ -267,14 +251,4 @@ public class PlayerControllerRedux : NetworkBehaviour
             break;
         }
     }
-
-    [Command]
-    void CmdFlashLight()
-    {
-        //Apply it to all other clients
-        FlashLight();
-        RpcFlashLight();
-    }
-
-    
 }
