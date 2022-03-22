@@ -116,6 +116,7 @@ public class PlayerControllerRedux : NetworkBehaviour
             ControlSpeed();
             Crouch();
             Jump();
+            FlashLight();
             slopeMoveDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
 
             if (transform.position.y <= -1)
@@ -123,7 +124,6 @@ public class PlayerControllerRedux : NetworkBehaviour
                 SetPosition();
             }
         }
-        FlashLight();
     }
 
     void MyInput()
