@@ -155,19 +155,6 @@ public class PlayerControllerRedux : NetworkBehaviour
         {
             isCrouching = false;
         }
-        
-        if(Input.GetKeyDown(flashLightKey))
-        {
-            if (flashLightState == 0)
-            {
-                flashLightState = 1;
-            }
-            else
-            {
-                flashLightState = 0;
-            }
-        }
-
 
         moveDirection = orientation.forward * verticalMovement + orientation.right * horizontalMovement;
     }
@@ -247,6 +234,18 @@ public class PlayerControllerRedux : NetworkBehaviour
 
     void FlashLight()
     {
+        if(Input.GetKeyDown(flashLightKey))
+        {
+            if (flashLightState == 0)
+            {
+                flashLightState = 1;
+            }
+            else
+            {
+                flashLightState = 0;
+            }
+        }
+        
         switch(flashLightState)
         {
             case 0:
