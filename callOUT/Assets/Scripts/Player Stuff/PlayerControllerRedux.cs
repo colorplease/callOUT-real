@@ -123,8 +123,9 @@ public class PlayerControllerRedux : NetworkBehaviour
             {
                 SetPosition();
             }
+        }
 
-            if(isServer)
+        if(isServer)
             {
                 RpcFlashLight();
             }
@@ -132,7 +133,6 @@ public class PlayerControllerRedux : NetworkBehaviour
             {
                 CmdFlashLight();
             }
-        }
     }
 
     void MyInput()
