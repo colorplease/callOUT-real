@@ -237,7 +237,7 @@ public class PlayerControllerRedux : NetworkBehaviour
         }
     }
 
-
+    [Command]
     void FlashLight()
     {
         switch(flashLightState)
