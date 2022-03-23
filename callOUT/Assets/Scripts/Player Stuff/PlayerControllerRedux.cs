@@ -283,11 +283,8 @@ public class PlayerControllerRedux : NetworkBehaviour
     [ClientRpc]
     void RpcFlashLightOn()
     {
-        if (isLocalPlayer)
-        {
             flashLightState = 0;
             FlashLight();
-        }
     }
 
     [Command]
@@ -302,10 +299,7 @@ public class PlayerControllerRedux : NetworkBehaviour
     [ClientRpc]
     void RpcFlashLightOff()
     {
-        if (isLocalPlayer)
-        {
             flashLightState = 1;
             FlashLight();
-        }
     }
 }
