@@ -123,6 +123,7 @@ public class PlayerControllerRedux : NetworkBehaviour
                 SetPosition();
             }
         }
+        FlashLight();
     }
 
     void MyInput()
@@ -151,20 +152,25 @@ public class PlayerControllerRedux : NetworkBehaviour
         {
             if (flashLightState == 0)
             {
-                flashLightState = 1;
+                if(isServer)
+                {
+                RpcFlashLightOff();
+                }
+                else
+                {
+                CmdFlashLightOff();
+                }
             }
             else
             {
-                flashLightState = 0;
-            }
-
-            if(isServer)
-            {
-                RpcFlashLight();
-            }
-            else
-            {
-                CmdFlashLight();
+                if(isServer)
+                {
+                RpcFlashLightOn();
+                }
+                else
+                {
+                CmdFlashLightOn();
+                }
             }
         }
         moveDirection = orientation.forward * verticalMovement + orientation.right * horizontalMovement;
@@ -245,7 +251,6 @@ public class PlayerControllerRedux : NetworkBehaviour
 
     void FlashLight()
     {
-
         switch(flashLightState)
         {
             case 0:
@@ -267,18 +272,39 @@ public class PlayerControllerRedux : NetworkBehaviour
     }
 
     [Command]
-    void CmdFlashLight()
+    void CmdFlashLightOn()
     {
         //Apply it to all other clients
+        flashLightState = 0;
         FlashLight();
-        RpcFlashLight();
+        RpcFlashLightOn();
     }
 
     [ClientRpc]
-    void RpcFlashLight()
+    void RpcFlashLightOn()
     {
         if (isLocalPlayer)
         {
+            flashLightState = 0;
+            FlashLight();
+        }
+    }
+
+    [Command]
+    void CmdFlashLightOff()
+    {
+        //Apply it to all other clients
+        flashLightState = 1;
+        FlashLight();
+        RpcFlashLightOff();
+    }
+
+    [ClientRpc]
+    void RpcFlashLightOff()
+    {
+        if (isLocalPlayer)
+        {
+            flashLightState = 1;
             FlashLight();
         }
     }
