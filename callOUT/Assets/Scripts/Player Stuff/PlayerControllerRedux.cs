@@ -63,6 +63,7 @@ public class PlayerControllerRedux : NetworkBehaviour
     [Header("Items")]
     public GameObject flashLight;
     public int flashLightState;
+    public bool flashLightInvertCheck;
     
     public void SetPosition()
     {
@@ -265,33 +266,35 @@ public class PlayerControllerRedux : NetworkBehaviour
         if (flashLightState == 1)
         {
             flashLightState = 0;
-            Debug.Log("On 1");
+            flashLightInvertCheck = true;
         }
         else
         {
             flashLightState = 1;
-            Debug.Log("Off 1");
+            flashLightInvertCheck = true;
         }
         FlashLight();
         RpcFlashLight();
-        Debug.Log("1");
     }
 
     [ClientRpc]
     void RpcFlashLight()
     {
-        if (flashLightState == 1)
+        if (flashLightInvertCheck == false)
         {
+            if (flashLightState == 1)
+            {
             flashLightState = 0;
             Debug.Log("On 2");
             
-        }
-        else
-        {
+            }
+            else
+            {
             flashLightState = 1;
             Debug.Log("Off 2");
+            }
         }
         FlashLight();
-        Debug.Log("2");  
+        flashLightInvertCheck = false;
     }
 }
