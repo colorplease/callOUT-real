@@ -62,7 +62,7 @@ public class PlayerControllerRedux : NetworkBehaviour
 
     [Header("Items")]
     public GameObject flashLight;
-    int flashLightState;
+    public int flashLightState;
     
     public void SetPosition()
     {
@@ -123,15 +123,6 @@ public class PlayerControllerRedux : NetworkBehaviour
                 SetPosition();
             }
         }
-        FlashLight();
-        if (isServer)
-        {
-            RpcFlashLight();
-        }
-        else
-        {
-            CmdFlashLight();
-        }
     }
 
     void MyInput()
@@ -156,6 +147,26 @@ public class PlayerControllerRedux : NetworkBehaviour
             isCrouching = false;
         }
 
+        if(Input.GetKeyDown(flashLightKey))
+        {
+            if (flashLightState == 0)
+            {
+                flashLightState = 1;
+            }
+            else
+            {
+                flashLightState = 0;
+            }
+
+            if(isServer)
+            {
+                RpcFlashLight();
+            }
+            else
+            {
+                CmdFlashLight();
+            }
+        }
         moveDirection = orientation.forward * verticalMovement + orientation.right * horizontalMovement;
     }
 
@@ -234,18 +245,7 @@ public class PlayerControllerRedux : NetworkBehaviour
 
     void FlashLight()
     {
-        if(Input.GetKeyDown(flashLightKey))
-        {
-            if (flashLightState == 0)
-            {
-                flashLightState = 1;
-            }
-            else
-            {
-                flashLightState = 0;
-            }
-        }
-        
+
         switch(flashLightState)
         {
             case 0:
