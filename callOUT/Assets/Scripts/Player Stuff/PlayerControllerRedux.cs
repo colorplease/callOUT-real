@@ -270,21 +270,22 @@ public class PlayerControllerRedux : NetworkBehaviour
         {
             flashLightState = 1;
         }
-        RpcFlashLight();
         FlashLight();
+        RpcFlashLight();
     }
 
     [ClientRpc]
     void RpcFlashLight()
     {
-          if (flashLightState == 1)
+        if (flashLightState == 1)
         {
             flashLightState = 0;
+            FlashLight();
         }
         else
         {
             flashLightState = 1;
+            FlashLight();
         }  
-        FlashLight();
     }
 }
