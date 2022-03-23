@@ -265,13 +265,16 @@ public class PlayerControllerRedux : NetworkBehaviour
         if (flashLightState == 1)
         {
             flashLightState = 0;
+            Debug.Log("On 1");
         }
         else
         {
             flashLightState = 1;
+            Debug.Log("Off 1");
         }
         FlashLight();
         RpcFlashLight();
+        Debug.Log("1");
     }
 
     [ClientRpc]
@@ -280,12 +283,15 @@ public class PlayerControllerRedux : NetworkBehaviour
         if (flashLightState == 1)
         {
             flashLightState = 0;
-            FlashLight();
+            Debug.Log("On 2");
+            
         }
         else
         {
             flashLightState = 1;
-            FlashLight();
-        }  
+            Debug.Log("Off 2");
+        }
+        FlashLight();
+        Debug.Log("2");  
     }
 }
