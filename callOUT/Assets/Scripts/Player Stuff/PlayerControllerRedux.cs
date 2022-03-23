@@ -150,28 +150,14 @@ public class PlayerControllerRedux : NetworkBehaviour
 
         if(Input.GetKeyDown(flashLightKey))
         {
-            if (flashLightState == 0)
-            {
-                if(isServer)
+            if(isServer)
                 {
-                RpcFlashLightOff();
+                RpcFlashLight();
                 }
                 else
                 {
-                CmdFlashLightOff();
+                CmdFlashLight();
                 }
-            }
-            else
-            {
-                if(isServer)
-                {
-                RpcFlashLightOn();
-                }
-                else
-                {
-                CmdFlashLightOn();
-                }
-            }
         }
         moveDirection = orientation.forward * verticalMovement + orientation.right * horizontalMovement;
     }
@@ -271,35 +257,34 @@ public class PlayerControllerRedux : NetworkBehaviour
         }
     }
 
+    
     [Command]
-    void CmdFlashLightOn()
+    void CmdFlashLight()
     {
         //Apply it to all other clients
-        flashLightState = 0;
-        FlashLight();
-        RpcFlashLightOn();
-    }
-
-    [ClientRpc]
-    void RpcFlashLightOn()
-    {
+        if (flashLightState == 1)
+        {
             flashLightState = 0;
-            FlashLight();
-    }
-
-    [Command]
-    void CmdFlashLightOff()
-    {
-        //Apply it to all other clients
-        flashLightState = 1;
+        }
+        else
+        {
+            flashLightState = 1;
+        }
         FlashLight();
-        RpcFlashLightOff();
+        RpcFlashLight();
     }
 
     [ClientRpc]
-    void RpcFlashLightOff()
+    void RpcFlashLight()
     {
+          if (flashLightState == 1)
+        {
+            flashLightState = 0;
+        }
+        else
+        {
             flashLightState = 1;
-            FlashLight();
+        }  
+        FlashLight();
     }
 }
