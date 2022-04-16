@@ -48,6 +48,7 @@ public class LobbyController : NetworkBehaviour
     public Button StartGameButton;
     public Button BlueButton;
     public Button RedButton;
+    public Button ReadyButton;
     public TextMeshProUGUI ReadyButtonText;
 
     void Awake()
@@ -112,15 +113,18 @@ public class LobbyController : NetworkBehaviour
                 if(LocalplayerController.PlayerIdNumber == 1)
                 {
                 StartGameButton.interactable = true;
+                ReadyButton.interactable = true;
                 }
                 else
                 {
                 StartGameButton.interactable = false;
+                ReadyButton.interactable = true;
                 }
             }
             else
             {
                 StartGameButton.interactable = false;
+                ReadyButton.interactable = false;
             }
         }
         else
