@@ -106,24 +106,28 @@ public class LobbyController : NetworkBehaviour
         switch (colorNum)
         {
             case 1:
-            if (isLocalPlayer)
+            if (isServer)
             {
                 localPlayerColor.color = specialRed;
+                Debug.Log("local Red");
             }
             else
             {
                 otherPlayerColor.color = specialRed;
+                Debug.Log("other Red");
             }
             break;
 
             case 2:
-            if (isLocalPlayer)
+            if (isServer)
             {
                 localPlayerColor.color = specialBlue;
+                Debug.Log("local Blue");
             }
             else
             {
                 otherPlayerColor.color = specialBlue;
+                Debug.Log("other Blue");
             }
             break;
         }
