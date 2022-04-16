@@ -55,6 +55,11 @@ public class LobbyController : NetworkBehaviour
         if (Instance == null) {Instance = this;}
     }
 
+    void Update()
+    {
+        Debug.Log(isServer);
+    }
+
     public void ReadyPlayer()
     {
         LocalplayerController.ChangeReady();
