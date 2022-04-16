@@ -16,13 +16,18 @@ public class LobbyController : NetworkBehaviour
     public GameObject PlayerListViewContent;
     public GameObject PlayerListItemPrefab;
     public GameObject LocalPlayerObject;
-    bool isRed;
+    int localPlayerColorNum;
+    int otherPlayerColorNum;
+
+    //Other Player Data
+    public GameObject OtherPlayerObject;
 
     //Other Data
     public ulong CurrentLobbyID;
     public bool PlayerItemCreated = false;
     private List<PlayerListItem> PlayerListItems = new List<PlayerListItem>();
     public PlayerObjectController LocalplayerController;
+    [SerializeField]bool JoinColor = false;
 
     //Manager
     private CustomNetworkManager manager;
@@ -58,14 +63,90 @@ public class LobbyController : NetworkBehaviour
 
     public void RedButtonVoid()
     {
-        isRed = true;
         LocalPlayerObject.GetComponent<PlayerSwitchIdentity>().Red();
+        localPlayerColorNum = LocalPlayerObject.GetComponent<PlayerSwitchIdentity>().colorNumGlobal;
+        otherPlayerColorNum = OtherPlayerObject.GetComponent<PlayerSwitchIdentity>().colorNumGlobal;
+        if (localPlayerColorNum != otherPlayerColorNum)
+                        {
+                            if (localPlayerColorNum != 0)
+                            {
+                                if (otherPlayerColorNum != 0)
+                                    {
+                                        JoinColor = true;
+                                    }
+                                    else
+                                    {
+                                        JoinColor = false;
+                                    }
+                            }
+                            else
+                            {
+                                JoinColor = false;
+                            }
+                        }
+                        else
+                        {
+                            JoinColor = false;
+                        }
+        
     } 
 
     public void BlueButtonVoid()
     {
-        isRed = false;
         LocalPlayerObject.GetComponent<PlayerSwitchIdentity>().Blue();
+        localPlayerColorNum = LocalPlayerObject.GetComponent<PlayerSwitchIdentity>().colorNumGlobal;
+        otherPlayerColorNum = OtherPlayerObject.GetComponent<PlayerSwitchIdentity>().colorNumGlobal;
+        if (localPlayerColorNum != otherPlayerColorNum)
+                        {
+                            if (localPlayerColorNum != 0)
+                            {
+                                if (otherPlayerColorNum != 0)
+                                    {
+                                        JoinColor = true;
+                                    }
+                                    else
+                                    {
+                                        JoinColor = false;
+                                    }
+                            }
+                            else
+                            {
+                                JoinColor = false;
+                            }
+                        }
+                        else
+                        {
+                            JoinColor = false;
+                        }
+    }
+
+    public void Clear()
+    {
+        LocalPlayerObject.GetComponent<PlayerSwitchIdentity>().ClearWhite();
+        localPlayerColorNum = LocalPlayerObject.GetComponent<PlayerSwitchIdentity>().colorNumGlobal;
+        otherPlayerColorNum = OtherPlayerObject.GetComponent<PlayerSwitchIdentity>().colorNumGlobal;
+       if (localPlayerColorNum != otherPlayerColorNum)
+                        {
+                            if (localPlayerColorNum != 0)
+                            {
+                                if (otherPlayerColorNum != 0)
+                                    {
+                                        JoinColor = true;
+                                    }
+                                    else
+                                    {
+                                        JoinColor = false;
+                                    }
+                            }
+                            else
+                            {
+                                JoinColor = false;
+                            }
+                        }
+                        else
+                        {
+                            JoinColor = false;
+                        }
     }
     
     public void UpdateButton()
@@ -99,9 +180,16 @@ public class LobbyController : NetworkBehaviour
 
         if (AllReady)
         {
-            if(LocalplayerController.PlayerIdNumber == 1)
+            if (JoinColor)
             {
+                if(LocalplayerController.PlayerIdNumber == 1)
+                {
                 StartGameButton.interactable = true;
+                }
+                else
+                {
+                StartGameButton.interactable = false;
+                }
             }
             else
             {
@@ -120,6 +208,7 @@ public class LobbyController : NetworkBehaviour
     {
         LocalPlayerObject = GameObject.Find("LocalGamePlayer");
         LocalplayerController = LocalPlayerObject.GetComponent<PlayerObjectController>();
+        OtherPlayerObject = GameObject.Find("PlayerObject(Clone)");
     }
 
     public void UpdatePlayerList()
@@ -186,14 +275,6 @@ public class LobbyController : NetworkBehaviour
                     if(player == LocalplayerController)
                     {
                         UpdateButton();
-                            if (isRed)
-                            {
-                                LocalPlayerObject.GetComponent<PlayerSwitchIdentity>().Red();
-                            }
-                            else
-                            {
-                                LocalPlayerObject.GetComponent<PlayerSwitchIdentity>().Blue();
-                            }
                     }
                 }
             }

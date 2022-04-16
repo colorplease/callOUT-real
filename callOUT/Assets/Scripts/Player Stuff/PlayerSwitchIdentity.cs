@@ -11,6 +11,7 @@ public class PlayerSwitchIdentity : NetworkBehaviour
     [SerializeField] Material material1;
     [SerializeField] Material material2;
     [SerializeField] MeshRenderer meshRenderer;
+    public int colorNumGlobal;
     //Glasses Character Visibility
     [SerializeField] GameObject glasses1;
     [SerializeField] GameObject glasses2;
@@ -22,11 +23,9 @@ public class PlayerSwitchIdentity : NetworkBehaviour
     [SerializeField]Image otherPlayerColor;
     [SerializeField] Color specialRed;
     [SerializeField] Color specialBlue;
-    int colorNumGlobal;
 
     public void Red()
     {
-        colorNumGlobal = 1;
         SceneManager.activeSceneChanged += ChangedActiveScenes;
         if(isServer)
                 {
@@ -40,7 +39,6 @@ public class PlayerSwitchIdentity : NetworkBehaviour
 
     public void Blue()
     {
-        colorNumGlobal = 2;
         SceneManager.activeSceneChanged += ChangedActiveScenes;
         if(isServer)
                 {
@@ -49,6 +47,19 @@ public class PlayerSwitchIdentity : NetworkBehaviour
                 else
                 {
                 CmdColor(2);
+                }
+    }
+
+    public void ClearWhite()
+    {
+        SceneManager.activeSceneChanged += ChangedActiveScenes;
+        if(isServer)
+                {
+                RpcColor(0);
+                }
+                else
+                {
+                CmdColor(0);
                 }
     }
 
@@ -93,6 +104,18 @@ public class PlayerSwitchIdentity : NetworkBehaviour
         }
     }
 
+    void ColorUIPickWhite()
+    {
+        if (isLocalPlayer)
+        {
+            localPlayerColor.color = new Color32(255,255,225,100);
+        }
+        else
+        {
+            otherPlayerColor.color = new Color32(255,255,225,100);
+        }
+    }
+
     [Command]
     void CmdColor(int colorNum)
     {
@@ -110,7 +133,15 @@ public class PlayerSwitchIdentity : NetworkBehaviour
     {
         switch (colorNum)
         {
+            case 0:
+            colorNumGlobal = 0;
+            localPlayerColor = GameObject.FindGameObjectWithTag("LocalPlayerColorUI").GetComponent<Image>();
+            otherPlayerColor = GameObject.FindGameObjectWithTag("OtherPlayerColorUI").GetComponent<Image>();
+            ColorUIPickWhite();
+            
+            break;
             case 1:
+            colorNumGlobal = 1;
             localPlayerColor = GameObject.FindGameObjectWithTag("LocalPlayerColorUI").GetComponent<Image>();
             otherPlayerColor = GameObject.FindGameObjectWithTag("OtherPlayerColorUI").GetComponent<Image>();
             meshRenderer.material = material1;
@@ -120,6 +151,7 @@ public class PlayerSwitchIdentity : NetworkBehaviour
             break;
 
             case 2:
+            colorNumGlobal = 2;
             localPlayerColor = GameObject.FindGameObjectWithTag("LocalPlayerColorUI").GetComponent<Image>();
             otherPlayerColor = GameObject.FindGameObjectWithTag("OtherPlayerColorUI").GetComponent<Image>();
             meshRenderer.material = material2;
