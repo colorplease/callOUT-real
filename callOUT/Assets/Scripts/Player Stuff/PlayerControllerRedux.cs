@@ -244,7 +244,6 @@ public class PlayerControllerRedux : NetworkBehaviour
             if (flashLight.activeSelf == false)
             {
             flashLight.SetActive(true);
-            Debug.Log("On");
             }
             break;
 
@@ -252,7 +251,6 @@ public class PlayerControllerRedux : NetworkBehaviour
             if (flashLight.activeSelf == true)
             {
             flashLight.SetActive(false);
-            Debug.Log("Off");
             }
             break;
         }
@@ -285,13 +283,11 @@ public class PlayerControllerRedux : NetworkBehaviour
             if (flashLightState == 1)
             {
             flashLightState = 0;
-            Debug.Log("On 2");
             
             }
             else
             {
             flashLightState = 1;
-            Debug.Log("Off 2");
             }
         }
         FlashLight();

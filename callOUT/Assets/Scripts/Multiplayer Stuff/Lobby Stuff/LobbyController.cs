@@ -41,6 +41,8 @@ public class LobbyController : MonoBehaviour
 
     //Ready
     public Button StartGameButton;
+    public Button BlueButton;
+    public Button RedButton;
     public TextMeshProUGUI ReadyButtonText;
 
     void Awake()
@@ -51,6 +53,16 @@ public class LobbyController : MonoBehaviour
     public void ReadyPlayer()
     {
         LocalplayerController.ChangeReady();
+    }
+
+    public void RedButtonVoid()
+    {
+        LocalPlayerObject.GetComponent<PlayerSwitchIdentity>().Red();
+    } 
+
+    public void BlueButtonVoid()
+    {
+        LocalPlayerObject.GetComponent<PlayerSwitchIdentity>().Blue();
     }
 
     public void UpdateButton()

@@ -79,8 +79,9 @@ GameObject:
   - component: {fileID: 252473538193368440}
   - component: {fileID: 4459366985744021634}
   - component: {fileID: 5660968250929977922}
+  - component: {fileID: 1892623257442598949}
   m_Layer: 0
-  m_Name: PlayerObjectTime
+  m_Name: PlayerObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -178,6 +179,8 @@ MonoBehaviour:
   PlayerModel: {fileID: 1045568802689704901}
   cameraClient: {fileID: 4628369532435069535}
   flashLight: {fileID: 8682491010647541000}
+  flashLightState: 0
+  flashLightInvertCheck: 0
 --- !u!136 &743365630814980470
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -317,6 +320,21 @@ MonoBehaviour:
   showOverlay: 0
   overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
   target: {fileID: 4085687383206234815}
+--- !u!114 &1892623257442598949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2367852559480536614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 134d3e854c988c342b32d9219e6474df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material1: {fileID: 2100000, guid: e3dfd57f568d2d64fa2af06ca99226df, type: 2}
+  material2: {fileID: 2100000, guid: ee27af198bf1d414faebca69a523fd17, type: 2}
+  meshRenderer: {fileID: 4259048416119583014}
 --- !u!1 &3048183382297992742
 GameObject:
   m_ObjectHideFlags: 0
