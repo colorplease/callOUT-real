@@ -56,6 +56,11 @@ public class LobbyController : NetworkBehaviour
         if (Instance == null) {Instance = this;}
     }
 
+    void Update()
+    {
+        CheckIfAllReady();
+    }
+
     public void ReadyPlayer()
     {
         LocalplayerController.ChangeReady();
@@ -106,25 +111,23 @@ public class LobbyController : NetworkBehaviour
             }
         }
 
-        if (AllReady)
+        if (JoinColor)
         {
-            if (JoinColor)
+            ReadyButton.interactable = true;
+            if (AllReady)
             {
                 if(LocalplayerController.PlayerIdNumber == 1)
                 {
                 StartGameButton.interactable = true;
-                ReadyButton.interactable = true;
                 }
                 else
                 {
                 StartGameButton.interactable = false;
-                ReadyButton.interactable = true;
                 }
             }
             else
             {
                 StartGameButton.interactable = false;
-                ReadyButton.interactable = false;
             }
         }
         else
