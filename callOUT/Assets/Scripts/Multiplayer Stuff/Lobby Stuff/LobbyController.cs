@@ -6,11 +6,13 @@ using UnityEngine.UI;
 using TMPro;
 using System.Linq;
 
-public class LobbyController : MonoBehaviour
+public class LobbyController : NetworkBehaviour
 {
     public static LobbyController Instance;
 
     //UI Elements
+    [SerializeField]Image localPlayerColor;
+    [SerializeField]Image otherPlayerColor;
 
     //Player Data
     public GameObject PlayerListViewContent;
@@ -22,6 +24,8 @@ public class LobbyController : MonoBehaviour
     public bool PlayerItemCreated = false;
     private List<PlayerListItem> PlayerListItems = new List<PlayerListItem>();
     public PlayerObjectController LocalplayerController;
+    [SerializeField] Color specialRed;
+    [SerializeField] Color specialBlue;
 
     //Manager
     private CustomNetworkManager manager;
@@ -58,11 +62,68 @@ public class LobbyController : MonoBehaviour
     public void RedButtonVoid()
     {
         LocalPlayerObject.GetComponent<PlayerSwitchIdentity>().Red();
+        if(isServer)
+                {
+                RpcImageColor(1);
+                }
+                else
+                {
+                CmdImageColor(1);
+                }
     } 
 
     public void BlueButtonVoid()
     {
         LocalPlayerObject.GetComponent<PlayerSwitchIdentity>().Blue();
+        if(isServer)
+                {
+                RpcImageColor(2);
+                }
+                else
+                {
+                CmdImageColor(2);
+                }
+    }
+
+     [Command]
+    void CmdImageColor(int colorNum)
+    {
+        ImageColor(colorNum);
+        RpcImageColor(colorNum);
+    }
+
+    [ClientRpc]
+    void RpcImageColor(int colorNum)
+    {
+        ImageColor(colorNum);
+    }
+
+     void ImageColor(int colorNum)
+    {
+        switch (colorNum)
+        {
+            case 1:
+            if (isLocalPlayer)
+            {
+                localPlayerColor.color = specialRed;
+            }
+            else
+            {
+                otherPlayerColor.color = specialRed;
+            }
+            break;
+
+            case 2:
+            if (isLocalPlayer)
+            {
+                localPlayerColor.color = specialBlue;
+            }
+            else
+            {
+                otherPlayerColor.color = specialBlue;
+            }
+            break;
+        }
     }
 
     public void UpdateButton()
