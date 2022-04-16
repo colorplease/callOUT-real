@@ -842,7 +842,7 @@ GameObject:
   - component: {fileID: 859507329}
   m_Layer: 5
   m_Name: Player Color
-  m_TagString: Untagged
+  m_TagString: LocalPlayerColorUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1487,16 +1487,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  localPlayerColor: {fileID: 859507329}
-  otherPlayerColor: {fileID: 2147395479}
   PlayerListViewContent: {fileID: 229139906}
   PlayerListItemPrefab: {fileID: 6255526951639736749, guid: d2053041f176b1441ab4f3b57fc42438, type: 3}
   LocalPlayerObject: {fileID: 0}
   CurrentLobbyID: 0
   PlayerItemCreated: 0
   LocalplayerController: {fileID: 0}
-  specialRed: {r: 1, g: 0, b: 0, a: 1}
-  specialBlue: {r: 0.13333334, g: 0.2, b: 0.43529412, a: 1}
   StartGameButton: {fileID: 1914897831}
   BlueButton: {fileID: 0}
   RedButton: {fileID: 0}
@@ -2248,7 +2244,7 @@ GameObject:
   - component: {fileID: 2147395479}
   m_Layer: 5
   m_Name: Other Player Color
-  m_TagString: Untagged
+  m_TagString: OtherPlayerColorUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

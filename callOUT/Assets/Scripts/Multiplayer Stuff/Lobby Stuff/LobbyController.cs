@@ -11,8 +11,6 @@ public class LobbyController : NetworkBehaviour
     public static LobbyController Instance;
 
     //UI Elements
-    [SerializeField]Image localPlayerColor;
-    [SerializeField]Image otherPlayerColor;
 
     //Player Data
     public GameObject PlayerListViewContent;
@@ -25,8 +23,6 @@ public class LobbyController : NetworkBehaviour
     public bool PlayerItemCreated = false;
     private List<PlayerListItem> PlayerListItems = new List<PlayerListItem>();
     public PlayerObjectController LocalplayerController;
-    [SerializeField] Color specialRed;
-    [SerializeField] Color specialBlue;
 
     //Manager
     private CustomNetworkManager manager;
@@ -55,11 +51,6 @@ public class LobbyController : NetworkBehaviour
         if (Instance == null) {Instance = this;}
     }
 
-    void Update()
-    {
-        Debug.Log(isServer);
-    }
-
     public void ReadyPlayer()
     {
         LocalplayerController.ChangeReady();
@@ -69,75 +60,14 @@ public class LobbyController : NetworkBehaviour
     {
         isRed = true;
         LocalPlayerObject.GetComponent<PlayerSwitchIdentity>().Red();
-        if(isServer)
-                {
-                RpcImageColor(1);
-                }
-                else
-                {
-                CmdImageColor(1);
-                }
     } 
 
     public void BlueButtonVoid()
     {
         isRed = false;
         LocalPlayerObject.GetComponent<PlayerSwitchIdentity>().Blue();
-        if(isServer)
-                {
-                RpcImageColor(2);
-                }
-                else
-                {
-                CmdImageColor(2);
-                }
     }
-
-     [Command]
-    void CmdImageColor(int colorNum)
-    {
-        ImageColor(colorNum);
-        RpcImageColor(colorNum);
-    }
-
-    [ClientRpc]
-    void RpcImageColor(int colorNum)
-    {
-        ImageColor(colorNum);
-    }
-
-     void ImageColor(int colorNum)
-    {
-        switch (colorNum)
-        {
-            case 1:
-            if (isServer)
-            {
-                localPlayerColor.color = specialRed;
-                Debug.Log("local Red");
-            }
-            else
-            {
-                otherPlayerColor.color = specialRed;
-                Debug.Log("other Red");
-            }
-            break;
-
-            case 2:
-            if (isServer)
-            {
-                localPlayerColor.color = specialBlue;
-                Debug.Log("local Blue");
-            }
-            else
-            {
-                otherPlayerColor.color = specialBlue;
-                Debug.Log("other Blue");
-            }
-            break;
-        }
-    }
-
+    
     public void UpdateButton()
     {
         if(LocalplayerController.Ready)
@@ -256,33 +186,19 @@ public class LobbyController : NetworkBehaviour
                     if(player == LocalplayerController)
                     {
                         UpdateButton();
+                            if (isRed)
+                            {
+                                LocalPlayerObject.GetComponent<PlayerSwitchIdentity>().Red();
+                            }
+                            else
+                            {
+                                LocalPlayerObject.GetComponent<PlayerSwitchIdentity>().Blue();
+                            }
                     }
                 }
             }
         }
         CheckIfAllReady();
-        if (isRed)
-        {
-            if(isServer)
-                {
-                RpcImageColor(1);
-                }
-                else
-                {
-                CmdImageColor(1);
-                }
-        }
-        else
-        {
-            if(isServer)
-                {
-                RpcImageColor(2);
-                }
-                else
-                {
-                CmdImageColor(2);
-                }
-        }
     }
 
     public void RemovePlayerItem()

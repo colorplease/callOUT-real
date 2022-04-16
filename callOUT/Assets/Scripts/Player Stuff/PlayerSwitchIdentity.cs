@@ -3,17 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerSwitchIdentity : NetworkBehaviour
 {
+    //Color Pick
     [SerializeField] Material material1;
     [SerializeField] Material material2;
     [SerializeField] MeshRenderer meshRenderer;
+    //Glasses Character Visibility
     [SerializeField] GameObject glasses1;
     [SerializeField] GameObject glasses2;
     [SerializeField] GameObject mainCam;
     [SerializeField] LayerMask glass1Mask;
     [SerializeField] LayerMask glass2Mask;
+    //UI Image Color Pick
+    [SerializeField]Image localPlayerColor;
+    [SerializeField]Image otherPlayerColor;
+    [SerializeField] Color specialRed;
+    [SerializeField] Color specialBlue;
     int colorNumGlobal;
 
     public void Red()
@@ -61,6 +69,30 @@ public class PlayerSwitchIdentity : NetworkBehaviour
         }
     }
 
+    void ColorUIPickRed()
+    {
+        if (isLocalPlayer)
+        {
+            localPlayerColor.color = specialRed;
+        }
+        else
+        {
+            otherPlayerColor.color = specialRed;
+        }
+    }
+
+    void ColorUIPickBlue()
+    {
+        if (isLocalPlayer)
+        {
+            localPlayerColor.color = specialBlue;
+        }
+        else
+        {
+            otherPlayerColor.color = specialBlue;
+        }
+    }
+
     [Command]
     void CmdColor(int colorNum)
     {
@@ -79,15 +111,21 @@ public class PlayerSwitchIdentity : NetworkBehaviour
         switch (colorNum)
         {
             case 1:
+            localPlayerColor = GameObject.FindGameObjectWithTag("LocalPlayerColorUI").GetComponent<Image>();
+            otherPlayerColor = GameObject.FindGameObjectWithTag("OtherPlayerColorUI").GetComponent<Image>();
             meshRenderer.material = material1;
             glasses1.SetActive(true);
             glasses2.SetActive(false);
+            ColorUIPickRed();
             break;
 
             case 2:
+            localPlayerColor = GameObject.FindGameObjectWithTag("LocalPlayerColorUI").GetComponent<Image>();
+            otherPlayerColor = GameObject.FindGameObjectWithTag("OtherPlayerColorUI").GetComponent<Image>();
             meshRenderer.material = material2;
             glasses1.SetActive(false);
             glasses2.SetActive(true);
+            ColorUIPickBlue();
             break;
         }
     }
