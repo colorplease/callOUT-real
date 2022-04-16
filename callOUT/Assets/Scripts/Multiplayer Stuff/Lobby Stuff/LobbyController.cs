@@ -18,6 +18,7 @@ public class LobbyController : NetworkBehaviour
     public GameObject PlayerListViewContent;
     public GameObject PlayerListItemPrefab;
     public GameObject LocalPlayerObject;
+    bool isRed;
 
     //Other Data
     public ulong CurrentLobbyID;
@@ -61,6 +62,7 @@ public class LobbyController : NetworkBehaviour
 
     public void RedButtonVoid()
     {
+        isRed = true;
         LocalPlayerObject.GetComponent<PlayerSwitchIdentity>().Red();
         if(isServer)
                 {
@@ -74,6 +76,7 @@ public class LobbyController : NetworkBehaviour
 
     public void BlueButtonVoid()
     {
+        isRed = false;
         LocalPlayerObject.GetComponent<PlayerSwitchIdentity>().Blue();
         if(isServer)
                 {
@@ -103,7 +106,7 @@ public class LobbyController : NetworkBehaviour
         switch (colorNum)
         {
             case 1:
-            if (isLocalPlayer)
+            if (isServer)
             {
                 localPlayerColor.color = specialRed;
             }
@@ -114,7 +117,7 @@ public class LobbyController : NetworkBehaviour
             break;
 
             case 2:
-            if (isLocalPlayer)
+            if (isServer)
             {
                 localPlayerColor.color = specialBlue;
             }
@@ -249,6 +252,28 @@ public class LobbyController : NetworkBehaviour
             }
         }
         CheckIfAllReady();
+        if (isRed)
+        {
+            if(isServer)
+                {
+                RpcImageColor(1);
+                }
+                else
+                {
+                CmdImageColor(1);
+                }
+        }
+        else
+        {
+            if(isServer)
+                {
+                RpcImageColor(2);
+                }
+                else
+                {
+                CmdImageColor(2);
+                }
+        }
     }
 
     public void RemovePlayerItem()

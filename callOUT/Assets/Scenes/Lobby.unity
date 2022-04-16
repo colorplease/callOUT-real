@@ -1487,8 +1487,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  localPlayerColor: {fileID: 2147395479}
-  otherPlayerColor: {fileID: 859507329}
+  localPlayerColor: {fileID: 859507329}
+  otherPlayerColor: {fileID: 2147395479}
   PlayerListViewContent: {fileID: 229139906}
   PlayerListItemPrefab: {fileID: 6255526951639736749, guid: d2053041f176b1441ab4f3b57fc42438, type: 3}
   LocalPlayerObject: {fileID: 0}
