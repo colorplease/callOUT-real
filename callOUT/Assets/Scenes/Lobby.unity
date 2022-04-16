@@ -1624,13 +1624,16 @@ MonoBehaviour:
   PlayerListViewContent: {fileID: 229139906}
   PlayerListItemPrefab: {fileID: 6255526951639736749, guid: d2053041f176b1441ab4f3b57fc42438, type: 3}
   LocalPlayerObject: {fileID: 0}
-  OtherPlayerObject: {fileID: 0}
+  localPlayerColorNum: 0
+  otherPlayerColorNum: 0
   CurrentLobbyID: 0
   PlayerItemCreated: 0
   LocalplayerController: {fileID: 0}
+  JoinColor: 0
   StartGameButton: {fileID: 1914897831}
   BlueButton: {fileID: 0}
   RedButton: {fileID: 0}
+  ReadyButton: {fileID: 505856679}
   ReadyButtonText: {fileID: 2020754879}
 --- !u!4 &1282413240
 Transform:
