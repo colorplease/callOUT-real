@@ -63,107 +63,17 @@ public class LobbyController : NetworkBehaviour
     public void RedButtonVoid()
     {
         LocalPlayerObject.GetComponent<PlayerSwitchIdentity>().Red();
-        playerCheck = GameObject.FindGameObjectsWithTag("Player");
-        playerCheckComponents = new PlayerSwitchIdentity[playerCheck.Length];
-        for (int i = 0; i < playerCheck.Length; ++i)
-        {
-            playerCheckComponents[i] = playerCheck[i].GetComponent<PlayerSwitchIdentity>();
-        }
-        localPlayerColorNum = playerCheckComponents[0].colorNumGlobal;
-        otherPlayerColorNum = playerCheckComponents[playerCheck.Length - 1].colorNumGlobal;
-        if (localPlayerColorNum != otherPlayerColorNum)
-                        {
-                            if (localPlayerColorNum != 0)
-                            {
-                                if (otherPlayerColorNum != 0)
-                                    {
-                                        JoinColor = true;
-                                    }
-                                    else
-                                    {
-                                        JoinColor = false;
-                                    }
-                            }
-                            else
-                            {
-                                JoinColor = false;
-                            }
-                        }
-                        else
-                        {
-                            JoinColor = false;
-                        }
-        
     } 
 
     public void BlueButtonVoid()
     {
         LocalPlayerObject.GetComponent<PlayerSwitchIdentity>().Blue();
-        playerCheck = GameObject.FindGameObjectsWithTag("Player");
-        playerCheckComponents = new PlayerSwitchIdentity[playerCheck.Length];
-        for (int i = 0; i < playerCheck.Length; ++i)
-        {
-            playerCheckComponents[i] = playerCheck[i].GetComponent<PlayerSwitchIdentity>();
-        }
-        localPlayerColorNum = playerCheckComponents[0].colorNumGlobal;
-        otherPlayerColorNum = playerCheckComponents[playerCheck.Length - 1].colorNumGlobal;
-        if (localPlayerColorNum != otherPlayerColorNum)
-                        {
-                            if (localPlayerColorNum != 0)
-                            {
-                                if (otherPlayerColorNum != 0)
-                                    {
-                                        JoinColor = true;
-                                    }
-                                    else
-                                    {
-                                        JoinColor = false;
-                                    }
-                            }
-                            else
-                            {
-                                JoinColor = false;
-                            }
-                        }
-                        else
-                        {
-                            JoinColor = false;
-                        }
     }
 
     public void Clear()
     {
         LocalPlayerObject.GetComponent<PlayerSwitchIdentity>().ClearWhite();
-        playerCheck = GameObject.FindGameObjectsWithTag("Player");
-        playerCheckComponents = new PlayerSwitchIdentity[playerCheck.Length];
-        for (int i = 0; i < playerCheck.Length; ++i)
-        {
-            playerCheckComponents[i] = playerCheck[i].GetComponent<PlayerSwitchIdentity>();
-        }
-        localPlayerColorNum = playerCheckComponents[0].colorNumGlobal;
-        otherPlayerColorNum = playerCheckComponents[playerCheck.Length - 1].colorNumGlobal;
-        if (localPlayerColorNum != otherPlayerColorNum)
-                        {
-                            if (localPlayerColorNum != 0)
-                            {
-                                if (otherPlayerColorNum != 0)
-                                    {
-                                        JoinColor = true;
-                                    }
-                                    else
-                                    {
-                                        JoinColor = false;
-                                    }
-                            }
-                            else
-                            {
-                                JoinColor = false;
-                            }
-                        }
-                        else
-                        {
-                            JoinColor = false;
-                        }
+        
     }
     
     public void UpdateButton()
@@ -291,6 +201,36 @@ public class LobbyController : NetworkBehaviour
                     if(player == LocalplayerController)
                     {
                         UpdateButton();
+                        playerCheck = GameObject.FindGameObjectsWithTag("Player");
+        playerCheckComponents = new PlayerSwitchIdentity[playerCheck.Length];
+        for (int i = 0; i < playerCheck.Length; ++i)
+        {
+            playerCheckComponents[i] = playerCheck[i].GetComponent<PlayerSwitchIdentity>();
+        }
+        localPlayerColorNum = playerCheckComponents[0].colorNumGlobal;
+        otherPlayerColorNum = playerCheckComponents[playerCheck.Length - 1].colorNumGlobal;
+        if (localPlayerColorNum != otherPlayerColorNum)
+                        {
+                            if (localPlayerColorNum != 0)
+                            {
+                                if (otherPlayerColorNum != 0)
+                                    {
+                                        JoinColor = true;
+                                    }
+                                    else
+                                    {
+                                        JoinColor = false;
+                                    }
+                            }
+                            else
+                            {
+                                JoinColor = false;
+                            }
+                        }
+                        else
+                        {
+                            JoinColor = false;
+                        }
                     }
                 }
             }
