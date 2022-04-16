@@ -106,7 +106,7 @@ public class LobbyController : NetworkBehaviour
         switch (colorNum)
         {
             case 1:
-            if (isServer)
+            if (isLocalPlayer)
             {
                 localPlayerColor.color = specialRed;
             }
@@ -117,7 +117,7 @@ public class LobbyController : NetworkBehaviour
             break;
 
             case 2:
-            if (isServer)
+            if (isLocalPlayer)
             {
                 localPlayerColor.color = specialBlue;
             }
