@@ -2,15 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using UnityEngine.SceneManagement;
 
 public class PlayerSwitchIdentity : NetworkBehaviour
 {
-    public Material material1;
-    public Material material2;
-    public MeshRenderer meshRenderer;
+    [SerializeField] Material material1;
+    [SerializeField] Material material2;
+    [SerializeField] MeshRenderer meshRenderer;
+    [SerializeField] GameObject glasses1;
+    [SerializeField] GameObject glasses2;
+    [SerializeField] GameObject mainCam;
+    [SerializeField] LayerMask glass1Mask;
+    [SerializeField] LayerMask glass2Mask;
+    int colorNumGlobal;
 
     public void Red()
     {
+        colorNumGlobal = 1;
+        SceneManager.activeSceneChanged += ChangedActiveScenes;
         if(isServer)
                 {
                 RpcColor(1);
@@ -23,6 +32,8 @@ public class PlayerSwitchIdentity : NetworkBehaviour
 
     public void Blue()
     {
+        colorNumGlobal = 2;
+        SceneManager.activeSceneChanged += ChangedActiveScenes;
         if(isServer)
                 {
                 RpcColor(2);
@@ -31,6 +42,23 @@ public class PlayerSwitchIdentity : NetworkBehaviour
                 {
                 CmdColor(2);
                 }
+    }
+
+    void ChangedActiveScenes(Scene current, Scene next)
+    {
+        if(SceneManager.GetActiveScene().name == "TESTING")
+        {
+            switch (colorNumGlobal)
+            {
+                case 1: 
+                GameObject.FindGameObjectWithTag("Main Camera").GetComponent<Camera>().cullingMask = glass1Mask;
+                break;
+
+                case 2:
+                GameObject.FindGameObjectWithTag("Main Camera").GetComponent<Camera>().cullingMask = glass2Mask;
+                break;
+            }
+        }
     }
 
     [Command]
@@ -52,10 +80,14 @@ public class PlayerSwitchIdentity : NetworkBehaviour
         {
             case 1:
             meshRenderer.material = material1;
+            glasses1.SetActive(true);
+            glasses1.SetActive(false);
             break;
 
             case 2:
             meshRenderer.material = material2;
+            glasses1.SetActive(false);
+            glasses1.SetActive(true);
             break;
         }
     }
