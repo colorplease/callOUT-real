@@ -81,13 +81,13 @@ public class PlayerSwitchIdentity : NetworkBehaviour
             case 1:
             meshRenderer.material = material1;
             glasses1.SetActive(true);
-            glasses1.SetActive(false);
+            glasses2.SetActive(false);
             break;
 
             case 2:
             meshRenderer.material = material2;
             glasses1.SetActive(false);
-            glasses1.SetActive(true);
+            glasses2.SetActive(true);
             break;
         }
     }
