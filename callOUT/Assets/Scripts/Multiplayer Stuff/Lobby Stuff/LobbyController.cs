@@ -16,11 +16,10 @@ public class LobbyController : NetworkBehaviour
     public GameObject PlayerListViewContent;
     public GameObject PlayerListItemPrefab;
     public GameObject LocalPlayerObject;
-    int localPlayerColorNum;
-    int otherPlayerColorNum;
-
-    //Other Player Data
-    public GameObject OtherPlayerObject;
+    [SerializeField]int localPlayerColorNum;
+    [SerializeField]int otherPlayerColorNum;
+    GameObject[] playerCheck;
+    PlayerSwitchIdentity[] playerCheckComponents;
 
     //Other Data
     public ulong CurrentLobbyID;
@@ -64,8 +63,14 @@ public class LobbyController : NetworkBehaviour
     public void RedButtonVoid()
     {
         LocalPlayerObject.GetComponent<PlayerSwitchIdentity>().Red();
-        localPlayerColorNum = LocalPlayerObject.GetComponent<PlayerSwitchIdentity>().colorNumGlobal;
-        otherPlayerColorNum = OtherPlayerObject.GetComponent<PlayerSwitchIdentity>().colorNumGlobal;
+        playerCheck = GameObject.FindGameObjectsWithTag("Player");
+        playerCheckComponents = new PlayerSwitchIdentity[playerCheck.Length];
+        for (int i = 0; i < playerCheck.Length; ++i)
+        {
+            playerCheckComponents[i] = playerCheck[i].GetComponent<PlayerSwitchIdentity>();
+        }
+        localPlayerColorNum = playerCheckComponents[0].colorNumGlobal;
+        otherPlayerColorNum = playerCheckComponents[playerCheck.Length - 1].colorNumGlobal;
         if (localPlayerColorNum != otherPlayerColorNum)
                         {
                             if (localPlayerColorNum != 0)
@@ -94,8 +99,14 @@ public class LobbyController : NetworkBehaviour
     public void BlueButtonVoid()
     {
         LocalPlayerObject.GetComponent<PlayerSwitchIdentity>().Blue();
-        localPlayerColorNum = LocalPlayerObject.GetComponent<PlayerSwitchIdentity>().colorNumGlobal;
-        otherPlayerColorNum = OtherPlayerObject.GetComponent<PlayerSwitchIdentity>().colorNumGlobal;
+        playerCheck = GameObject.FindGameObjectsWithTag("Player");
+        playerCheckComponents = new PlayerSwitchIdentity[playerCheck.Length];
+        for (int i = 0; i < playerCheck.Length; ++i)
+        {
+            playerCheckComponents[i] = playerCheck[i].GetComponent<PlayerSwitchIdentity>();
+        }
+        localPlayerColorNum = playerCheckComponents[0].colorNumGlobal;
+        otherPlayerColorNum = playerCheckComponents[playerCheck.Length - 1].colorNumGlobal;
         if (localPlayerColorNum != otherPlayerColorNum)
                         {
                             if (localPlayerColorNum != 0)
@@ -123,9 +134,15 @@ public class LobbyController : NetworkBehaviour
     public void Clear()
     {
         LocalPlayerObject.GetComponent<PlayerSwitchIdentity>().ClearWhite();
-        localPlayerColorNum = LocalPlayerObject.GetComponent<PlayerSwitchIdentity>().colorNumGlobal;
-        otherPlayerColorNum = OtherPlayerObject.GetComponent<PlayerSwitchIdentity>().colorNumGlobal;
-       if (localPlayerColorNum != otherPlayerColorNum)
+        playerCheck = GameObject.FindGameObjectsWithTag("Player");
+        playerCheckComponents = new PlayerSwitchIdentity[playerCheck.Length];
+        for (int i = 0; i < playerCheck.Length; ++i)
+        {
+            playerCheckComponents[i] = playerCheck[i].GetComponent<PlayerSwitchIdentity>();
+        }
+        localPlayerColorNum = playerCheckComponents[0].colorNumGlobal;
+        otherPlayerColorNum = playerCheckComponents[playerCheck.Length - 1].colorNumGlobal;
+        if (localPlayerColorNum != otherPlayerColorNum)
                         {
                             if (localPlayerColorNum != 0)
                             {
@@ -208,7 +225,6 @@ public class LobbyController : NetworkBehaviour
     {
         LocalPlayerObject = GameObject.Find("LocalGamePlayer");
         LocalplayerController = LocalPlayerObject.GetComponent<PlayerObjectController>();
-        OtherPlayerObject = GameObject.Find("PlayerObject(Clone)");
     }
 
     public void UpdatePlayerList()

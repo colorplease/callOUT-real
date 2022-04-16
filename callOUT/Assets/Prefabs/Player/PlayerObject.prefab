@@ -82,7 +82,7 @@ GameObject:
   - component: {fileID: 1892623257442598949}
   m_Layer: 0
   m_Name: PlayerObject
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -337,6 +337,7 @@ MonoBehaviour:
   material1: {fileID: 2100000, guid: e3dfd57f568d2d64fa2af06ca99226df, type: 2}
   material2: {fileID: 2100000, guid: ee27af198bf1d414faebca69a523fd17, type: 2}
   meshRenderer: {fileID: 4259048416119583014}
+  colorNumGlobal: 0
   glasses1: {fileID: 8042263804584970713}
   glasses2: {fileID: 4111382174700604700}
   mainCam: {fileID: 0}
