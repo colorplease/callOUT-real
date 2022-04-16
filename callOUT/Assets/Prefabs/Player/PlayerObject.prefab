@@ -342,10 +342,10 @@ MonoBehaviour:
   mainCam: {fileID: 0}
   glass1Mask:
     serializedVersion: 2
-    m_Bits: 191
+    m_Bits: 127
   glass2Mask:
     serializedVersion: 2
-    m_Bits: 127
+    m_Bits: 191
 --- !u!1 &3048183382297992742
 GameObject:
   m_ObjectHideFlags: 0
