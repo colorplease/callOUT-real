@@ -26,7 +26,6 @@ public class LobbyController : NetworkBehaviour
     public bool PlayerItemCreated = false;
     private List<PlayerListItem> PlayerListItems = new List<PlayerListItem>();
     public PlayerObjectController LocalplayerController;
-    [SerializeField]bool JoinColor = false;
 
     //Manager
     private CustomNetworkManager manager;
@@ -61,7 +60,7 @@ public class LobbyController : NetworkBehaviour
         CheckIfAllReady();
     }
 
-    void CheckColor()
+    public bool JoinColor()
     {
         playerCheck = GameObject.FindGameObjectsWithTag("Player");
         playerCheckComponents = new PlayerSwitchIdentity[playerCheck.Length];
@@ -77,21 +76,21 @@ public class LobbyController : NetworkBehaviour
                             {
                                 if (otherPlayerColorNum != 0)
                                     {
-                                        JoinColor = true;
+                                         return true;
                                     }
                                     else
                                     {
-                                        JoinColor = false;
+                                        return false;
                                     }
                             }
                             else
                             {
-                                JoinColor = false;
+                                return false;
                             }
                         }
                         else
                         {
-                            JoinColor = false;
+                            return false;
                         }
     }
 
@@ -126,7 +125,6 @@ public class LobbyController : NetworkBehaviour
         {
             ReadyButtonText.SetText("Ready");
         }
-        CheckColor();
     }
 
     public void CheckIfAllReady()
@@ -146,7 +144,7 @@ public class LobbyController : NetworkBehaviour
             }
         }
 
-        if (JoinColor)
+        if (JoinColor())
         {
             ReadyButton.interactable = true;
             if (AllReady)
