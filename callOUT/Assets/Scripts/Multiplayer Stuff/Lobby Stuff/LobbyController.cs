@@ -20,6 +20,7 @@ public class LobbyController : NetworkBehaviour
     [SerializeField]int otherPlayerColorNum;
     GameObject[] playerCheck;
     PlayerSwitchIdentity[] playerCheckComponents;
+    [SerializeField]bool debugSingle;
 
     //Other Data
     public ulong CurrentLobbyID;
@@ -144,7 +145,7 @@ public class LobbyController : NetworkBehaviour
             }
         }
 
-        if (JoinColor())
+        if (JoinColor() || debugSingle)
         {
             ReadyButton.interactable = true;
             if (AllReady)
