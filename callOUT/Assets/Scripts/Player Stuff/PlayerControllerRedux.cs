@@ -70,13 +70,16 @@ public class PlayerControllerRedux : NetworkBehaviour
     
     public void SetPosition()
     {
-        if (playerSwitchIdentity.colorNumGlobal == 1)
+        if(SceneManager.GetActiveScene().name == "TESTING")
+        {
+            if (playerSwitchIdentity.colorNumGlobal == 1)
         {
             transform.position = GameObject.FindGameObjectWithTag("Player 1 Spawn").transform.position;
         }
         if (playerSwitchIdentity.colorNumGlobal == 2)
         {
             transform.position = GameObject.FindGameObjectWithTag("Player 2 Spawn").transform.position;
+        }
         }
     }
 
