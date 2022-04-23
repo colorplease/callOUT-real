@@ -21,6 +21,7 @@ public class LobbyController : NetworkBehaviour
     GameObject[] playerCheck;
     PlayerSwitchIdentity[] playerCheckComponents;
     [SerializeField]bool debugSingle;
+    public bool JoinColor;
 
     //Other Data
     public ulong CurrentLobbyID;
@@ -59,9 +60,10 @@ public class LobbyController : NetworkBehaviour
     void Update()
     {
         CheckIfAllReady();
+        JoinColorCheck();
     }
 
-    public bool JoinColor()
+    public void JoinColorCheck()
     {
         playerCheck = GameObject.FindGameObjectsWithTag("Player");
         playerCheckComponents = new PlayerSwitchIdentity[playerCheck.Length];
@@ -77,21 +79,21 @@ public class LobbyController : NetworkBehaviour
                             {
                                 if (otherPlayerColorNum != 0)
                                     {
-                                         return true;
+                                         JoinColor = true;
                                     }
                                     else
                                     {
-                                        return false;
+                                        JoinColor = false;
                                     }
                             }
                             else
                             {
-                                return false;
+                                JoinColor = false;
                             }
                         }
                         else
                         {
-                            return false;
+                            JoinColor = false;
                         }
     }
 
@@ -145,7 +147,7 @@ public class LobbyController : NetworkBehaviour
             }
         }
 
-        if (JoinColor() || debugSingle)
+        if (JoinColor || debugSingle)
         {
             ReadyButton.interactable = true;
             if (AllReady)
