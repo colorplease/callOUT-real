@@ -181,6 +181,7 @@ MonoBehaviour:
   flashLight: {fileID: 8682491010647541000}
   flashLightState: 0
   flashLightInvertCheck: 0
+  playerSwitchIdentity: {fileID: 1892623257442598949}
 --- !u!136 &743365630814980470
 CapsuleCollider:
   m_ObjectHideFlags: 0

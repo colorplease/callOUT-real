@@ -64,11 +64,20 @@ public class PlayerControllerRedux : NetworkBehaviour
     public GameObject flashLight;
     public int flashLightState;
     public bool flashLightInvertCheck;
+
+    [Header("Identity")]
+    public PlayerSwitchIdentity playerSwitchIdentity;
     
     public void SetPosition()
     {
-        //Transform spawnPoint = GameObject.Find("Player 1 Spawn").transform;
-        transform.position = new Vector3(Random.Range(0.1f, -5f), 0.9f, Random.Range(-3f, 5f));
+        if (playerSwitchIdentity.colorNumGlobal == 1)
+        {
+            transform.position = GameObject.FindGameObjectWithTag("Player 1 Spawn").transform.position;
+        }
+        if (playerSwitchIdentity.colorNumGlobal == 2)
+        {
+            transform.position = GameObject.FindGameObjectWithTag("Player 2 Spawn").transform.position;
+        }
     }
 
     private bool OnSlope()

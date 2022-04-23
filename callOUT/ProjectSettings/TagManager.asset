@@ -7,6 +7,8 @@ TagManager:
   - Main Camera
   - LocalPlayerColorUI
   - OtherPlayerColorUI
+  - Player 1 Spawn
+  - Player 2 Spawn
   layers:
   - Default
   - TransparentFX
