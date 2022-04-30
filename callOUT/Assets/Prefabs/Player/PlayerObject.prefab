@@ -155,7 +155,7 @@ MonoBehaviour:
   orientation: {fileID: 894708327696818970}
   moveSpeed: 6
   airMultiplier: 0.4
-  jumpForce: 5
+  jumpForce: 7
   gravity: 0
   isSprinting: 0
   isCrouching: 0

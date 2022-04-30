@@ -1,8 +1,17 @@
 fileFormatVersion: 2
-guid: 2551ee89ffaf38f4abd7a1c588b9d8c2
+guid: c38363167788c544aaf20f6e59638ebc
 ModelImporter:
   serializedVersion: 20200
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: 2910742486769232160
+    second: Root|Idle
+  - first:
+      74: 7930764261308116701
+    second: Root|Run_loop
+  - first:
+      74: 703976530177123423
+    second: Root|Walk_loop
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -94,7 +103,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   additionalBone: 0
   userData: 

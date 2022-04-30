@@ -22,6 +22,7 @@ public class LobbyController : NetworkBehaviour
     PlayerSwitchIdentity[] playerCheckComponents;
     [SerializeField]bool debugSingle;
     public bool JoinColor;
+    int colorSelect;
 
     //Other Data
     public ulong CurrentLobbyID;
@@ -61,10 +62,29 @@ public class LobbyController : NetworkBehaviour
     {
         CheckIfAllReady();
         JoinColorCheck();
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            if (Input.GetKey(KeyCode.K))
+            {
+                if (Input.GetKey(KeyCode.M))
+                {
+                    debugSingle = true;
+                }
+            }
+        }
     }
 
     public void JoinColorCheck()
     {
+        if (colorSelect == 1)
+        {
+            LocalPlayerObject.GetComponent<PlayerSwitchIdentity>().Red();
+        }
+        if (colorSelect == 2)
+        {
+            LocalPlayerObject.GetComponent<PlayerSwitchIdentity>().Blue();
+        }
         playerCheck = GameObject.FindGameObjectsWithTag("Player");
         playerCheckComponents = new PlayerSwitchIdentity[playerCheck.Length];
         for (int i = 0; i < playerCheck.Length; ++i)
@@ -104,12 +124,13 @@ public class LobbyController : NetworkBehaviour
 
     public void RedButtonVoid()
     {
-        LocalPlayerObject.GetComponent<PlayerSwitchIdentity>().Red();
+        
+        colorSelect = 1;
     } 
 
     public void BlueButtonVoid()
     {
-        LocalPlayerObject.GetComponent<PlayerSwitchIdentity>().Blue();
+        colorSelect = 2;
     }
 
     public void Clear()
