@@ -9,6 +9,7 @@ TagManager:
   - OtherPlayerColorUI
   - Player 1 Spawn
   - Player 2 Spawn
+  - shades
   layers:
   - Default
   - TransparentFX
