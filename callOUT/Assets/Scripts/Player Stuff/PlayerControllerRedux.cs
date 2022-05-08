@@ -18,8 +18,6 @@ public class PlayerControllerRedux : NetworkBehaviour
     [SerializeField]float gravity;
     [SerializeField] bool isSprinting;
     [SerializeField] bool isCrouching;
-    
-
 
     [Header("Sprinting")]
     [SerializeField] float walkSpeed = 4f;
@@ -31,6 +29,7 @@ public class PlayerControllerRedux : NetworkBehaviour
     [SerializeField] KeyCode crouchKey = KeyCode.C;
     [SerializeField] KeyCode jumpKey = KeyCode.Space;
     [SerializeField] KeyCode flashLightKey = KeyCode.F;
+    [SerializeField] KeyCode interactKey = KeyCode.E;
 
     [Header("Drag")]
     [SerializeField] float groundDrag = 6f;
@@ -172,6 +171,11 @@ public class PlayerControllerRedux : NetworkBehaviour
                 CmdFlashLight();
                 }
         }
+
+        if (Input.GetKeyDown(interactKey))
+        {
+            Interactions();
+        }
         moveDirection = orientation.forward * verticalMovement + orientation.right * horizontalMovement;
     }
 
@@ -304,5 +308,26 @@ public class PlayerControllerRedux : NetworkBehaviour
         }
         FlashLight();
         flashLightInvertCheck = false;
+    }
+
+    void Interactions()
+    {
+        //some raycast jazz to check what you interacted with
+            RaycastHit hit;
+            if (Physics.Raycast(cameraClient.transform.position, cameraClient.transform.forward, out hit, 50f))
+            {
+                if (hit.transform.tag == "door")
+                {
+                    if (hit.transform.gameObject.GetComponent<Door>().IsOpen)
+                    {
+                        hit.transform.gameObject.GetComponent<Door>().Close();
+                    }
+                    else
+                    {
+                        hit.transform.gameObject.GetComponent<Door>().Open(transform.localPosition);
+                    }
+                    
+                }
+            }
     }
 }
